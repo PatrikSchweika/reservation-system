@@ -1,8 +1,10 @@
 
 import './App.css'
-import {RootRouter} from "./RootRouter.tsx";
+import {RootRouter} from "./routing/RootRouter.tsx";
 import {BrowserRouter} from "react-router-dom";
 import {QueryClient, QueryClientProvider} from "react-query";
+import { LocalizationProvider } from '@mui/x-date-pickers';
+import { AdapterMoment } from '@mui/x-date-pickers/AdapterMoment'
 
 const queryClient = new QueryClient()
 
@@ -12,10 +14,11 @@ function App() {
     <>
         <BrowserRouter>
             <QueryClientProvider client={queryClient}>
-                <RootRouter />
+                <LocalizationProvider dateAdapter={AdapterMoment}>
+                    <RootRouter />
+                </LocalizationProvider>
             </QueryClientProvider>
         </BrowserRouter>
-
     </>
   )
 }
